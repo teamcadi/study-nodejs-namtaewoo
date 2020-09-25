@@ -1,9 +1,10 @@
 {
-  "name": "week3",
+  "name": "todoList",
   "version": "1.0.0",
   "description": "",
-  "main": "fsTest.js",
+  "main": "index.js",
   "scripts": {
+    "dev": "npx nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
