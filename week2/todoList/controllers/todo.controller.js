@@ -20,10 +20,9 @@ module.exports = {
     const create_at = year + "-" + month + "-" + date1;
 
     //id 값 구하기
-    const lastId = todos[todos.length - 1].id;
-    const userId = lastId + 1;
+    const id = todos[todos.length - 1].id + 1;
     const it = {
-      id: userId,
+      id,
       title,
       date: create_at,
       completed: false,
@@ -39,35 +38,40 @@ module.exports = {
     const {
       id
     } = req.params;
-    console.log(id);
-    for (let i = 0; i < todos.length; i++) {
-      if (todos[i].id === Number(id)) {
-        todos.splice(i, 1);
-      }
-    }
-    res.json({
+
+    let newTodos = todos.filter(element => element.id != id);
+    todos = newTodos;
+    // for (let i = 0; i < todos.length; i++) {
+    //   if (todos[i].id === Number(id)) {
+    //     todos.splice(i, 1);
+    //   }
+    // }
+    res.status(200).json({
       success: true,
       message: "삭제 성공"
     });
   },
+
   toggleTodo: (req, res, next) => {
     const {
       id
     } = req.params;
-    for (let i = 0; i < todos.length; i++) {
-      if (todos[i].id === Number(id)) {
-        console.log('a');
-        if (todos[i].completed !== false) {
-          console.log('b');
-          todos[i].completed = false;
-        } else {
-          console.log('c');
-          todos[i].completed = true;
-          console.log(todos[i].completed);
-        }
+    todos.forEach(element => {
+      if (element.id == id) {
+        element.completed = !element.completed
       }
-    }
-    res.json({
+    });
+    // for (let i = 0; i < todos.length; i++) {
+    //   if (todos[i].id === Number(id)) {
+    //     if (todos[i].completed !== false) {
+    //       todos[i].completed = false;
+    //     } else {
+    //       todos[i].completed = true;
+    //       console.log(todos[i].completed);
+    //     }
+    //   }
+    // }
+    res.status(200).json({
       success: true,
       message: "토글 성공"
     })
