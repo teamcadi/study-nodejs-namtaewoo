@@ -10,11 +10,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 
 // router
-app.all('/', upload.single('my-file'), (req, res, next) => {
+app.post('/', upload.single('my-file'), (req, res, next) => {
+    //req.file
+    res.status(201).json(req.file);
+}); 
+// router
+app.post('/array', upload.array('my-files', 4), (req, res, next) => {
     //req.files
-    res.json(req.file);
+    res.status(201).json(req.files);
 });
-
 // port binding
 app.listen(9000, () => {
   console.log('server start');
