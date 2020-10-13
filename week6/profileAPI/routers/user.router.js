@@ -9,7 +9,7 @@ const router = require('express').Router();
 router.get('/:userId', async (req,res)=>{
     const {userId} = req.params;
     const user = getUser(Number(userId));
-    // delete user.password;
+    delete user.password;
 
     const image = getImage(user.id);
     const imageUrl = `http://localhost:9000/${image.path}`
