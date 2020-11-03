@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const user = require('../database/user');
+const users = require('../database/user');
 const bcrypt = require('bcrypt');
 
 function validator(req,res,next){
@@ -16,11 +16,13 @@ function validator(req,res,next){
 router.post('/register', validator, async (req, res, next)=>{
     const  {email, password} =req.body;
     try{
-        await bcrypt.genSalt(10);
+        const salt = await bcrypt.genSalt(10);
         const hashPassword = await bcrypt.hash(password, salt);
         // todo: DB
         // todo: email 겹치지 않게
         users.push({id:5, email, password: hashPassword});
+        console.log(email, password);
+        console.log(users);
         res.status(201).json({
             success:true,
             message:'가입 성공'
