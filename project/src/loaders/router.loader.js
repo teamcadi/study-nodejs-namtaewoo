@@ -9,6 +9,7 @@ const loadRouter = (app)=>{
     // app.use('users', userRouter);
     // app.use('comments', commentRouter);
     app.use('/auth', authRouter);
+    app.use('/users', userRouter);
 
     // 존재하지 않는 경로 처리
     app.use((req,res,next)=>{

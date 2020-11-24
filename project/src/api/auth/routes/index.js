@@ -9,7 +9,6 @@ const router = require('express').Router();
  */
 router.post('/register', registerValidator,authController.register);
 
-
 /**
  * @description 로그인
  * @routes POST /auth/login

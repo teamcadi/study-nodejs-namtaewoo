@@ -1,12 +1,12 @@
 const userController = {
     getUser: async (req,res,next)=>{
-        const {id} = req.params;
+        const {id} = req.user;
         const result = await findUser({id});
         if (result instanceof Error) next(result);
         else res.status(200).json({success: true, user: result});
     },
     modifyUser: (req,res,next)=>{
-        const {id} = req.params;
+        const {id} = req.user;
         const {name} = req.body;
         const result = await updateUser({name, id});
         if(result instanceof Error) next(result);
@@ -14,7 +14,7 @@ const userController = {
         else res.status(200).json({success: true, result})
     },
     modifyUserPw: (req,res,next)=>{
-        const {id} = req.params;
+        const {id} = req.user;
         const {password, newPassword} = req.body;
         const result = await updateUserPw({password, newPassword, id});
         if(result instanceof Error) next(result);
