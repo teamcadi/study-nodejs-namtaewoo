@@ -9,21 +9,20 @@ const pool = mysql.createPool({
     connectionLimit: 5,
 });
 // (async ()=>{
-//     const conn = await pool.getConnection();
-//     await conn.execute(
-//         `
-//         CREATE TABLE user(
+//     const conn = await pool.getConnection();        
+//         await conn.execute(`
+//         CREATE TABLE post_like(
 //             id int(11) NOT NULL AUTO_INCREMENT,
-//             email varchar(100) NOT NULL,
-//             name varchar(50) NOT NULL,
-//             password varchar(100) NOT NULL,
-//             createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-//             updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
+//             post_id int(11) NOT NULL,
+//             user_id int(11) NOT NULL,
+//             createdAt timestamp NOT NULL DEFAULT current_timestamp(),
+//             updatedAt timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
 //             PRIMARY KEY (id),
-//             UNIQUE KEY (email)
-//         )
-//         `
-//     );
+//             CONSTRAINT like_post_id_fk FOREIGN KEY (post_id) REFERENCES post (id),
+//             CONSTRAINT like_user_id_fk FOREIGN KEY (user_id) REFERENCES user (id)
+//         )`);
+//     await conn.release();
+//     console.log('success');
 // })();
 
 module.exports = {
