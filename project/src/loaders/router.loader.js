@@ -5,7 +5,7 @@ const authRouter = require("../api/auth/routes");
 
 const loadRouter = (app)=>{
 
-    // app.use('posts', postRouter);
+    app.use('/posts', postRouter);
     // app.use('users', userRouter);
     // app.use('comments', commentRouter);
     app.use('/auth', authRouter);
